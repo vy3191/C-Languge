@@ -57,7 +57,7 @@ $ git commit -m "说明"
 
 ## 版本回退
 
-对文件readme.txt进行修改，改为如下形式：
+对文件readme.txt进行修改，增加如下一段内容：
 ```git
 My name is Ryan, I'm from Hunan province.
 ```
@@ -90,7 +90,7 @@ index d8036c1..c420d75 100644
 ```
 查看改动后再次使用`$ git add`和`$ git commit -m "说明"`提交至仓库。
 
-在使用`$ git add`命令后使用`$ git status`查看仓库状态：
+另外，在使用`$ git add`命令后使用`$ git status`查看仓库状态：
 ```git
 On branch master
 Your branch is up-to-date with 'origin/master'.
@@ -101,4 +101,33 @@ Changes to be committed:
         modified:   readme.txt
 ```
 说明更改即将提交（Changes to be committed），再用`$ git commit`。这个过程说明了我们可以经常使用`$ git status`来查看仓库状态。
+
+以上是返回到以前的历史版本，有时又想撤回版本的回滚，则使用`$ git reset`命令：
+```git
+$ git reset --hard commit_id
+```
+每次发布后，都会有一个commit_id，这个很长的号码就是仓库的版本号。例如：
+```git
+commit 7f0a869ed8f376e967073f33d3018d302904aa7a
+```
+你可以通过使用`$ git reset --hard commit_id`命令在版本之间穿梭。
+当前版本的在Git中称为：`HEAD`，上一个版本则为：`HEAD^`，上上个版本为：`HEAD^^`。你的每一次版本的更新提交，都被Git保存了下来，HEAD就像一个指针，只是用来指向不同的版本，所以你才可以在各个版本中来回改动。
+
+我们不需要去记住版本号，使用命令`$ git log`可以查看Git日志，使用`$ git reflog`可以查看命令历史纪录。
+
+## 工作区和暂存区
+
+之前有个疑问就是：文件夹和仓库有什么区别？以为把文件放进了文件夹就是放进仓库了，还弄那么多命令干什么。现在就来解释上述疑问。
+
+文件夹在Git中叫做工作区，工作区不等于仓库，在文件中我们发现有个后缀为：`.git`的文件，这才是版本库。
+
+我们需要使用命令把工作区的文件添加到版本库。版本库中含有以下几个部分：
+
+1. 暂存区
+2. HEAD指针
+3. master分支
+
+我们实际提交文件，是先把文件从工作区提交到(index)暂存区`$ git add`，再从暂存区提交到master分支`$ git commit`，此分支是Git在我们创建版本库时自动为我们创建的第一个分支。
+
+
 
