@@ -1,3 +1,3 @@
-# C-Languge
+# C Languge
 
-简单的C语言代码。
+C课程和计算物理。
