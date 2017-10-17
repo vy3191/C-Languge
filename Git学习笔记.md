@@ -127,7 +127,4 @@ commit 7f0a869ed8f376e967073f33d3018d302904aa7a
 2. HEAD指针
 3. master分支
 
-我们实际提交文件，是先把文件从工作区提交到(index)暂存区`$ git add`，再从暂存区提交到master分支`$ git commit`，此分支是Git在我们创建版本库时自动为我们创建的第一个分支。
-
-
-
+我们实际提交文件的步骤为，使用命令`$ git add`把文件从工作区（working tree）提交到暂存区（index），再使用命令`$ git commit`从暂存区提交到master分支，此分支是Git在我们创建版本库时自动为我们创建的第一个分支。
